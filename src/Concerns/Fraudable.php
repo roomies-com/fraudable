@@ -36,7 +36,10 @@ trait Fraudable
     public function relabel(Label $label): void
     {
         $this->fraudEvents()
-            ->where('label', '!==', $label->toString())
+            ->where(function ($query) use ($label) {
+                $query->whereNull('label')
+                    ->orWhere('label', '!==', $label->toString());
+            })
             ->each(fn (FraudEvent $fraudEvent) => $fraudEvent->relabel($label));
     }
 
