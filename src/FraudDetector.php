@@ -59,7 +59,7 @@ class FraudDetector
     {
         $this->client->update($fraudEvent, $label);
 
-        return $event->forceFill([
+        return $fraudEvent->forceFill([
             'label' => $label->toString(),
         ])->save();
     }
