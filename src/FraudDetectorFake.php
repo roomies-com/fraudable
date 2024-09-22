@@ -26,7 +26,7 @@ class FraudDetectorFake extends FraudDetector implements Fake
     /**
      * Make a prediction for the fraud event using the given detector.
      */
-    public function predict(FraudEvent $fraudEvent, string $detectorId): ?Prediction
+    public function predict(FraudEvent $fraudEvent, string $detectorId): Prediction
     {
         return new Prediction;
     }
