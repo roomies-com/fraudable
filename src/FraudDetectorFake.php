@@ -8,14 +8,14 @@ use Illuminate\Support\Testing\Fakes\Fake;
 use Roomies\Fraudable\Contracts\FraudableEvent;
 use Roomies\Fraudable\Models\FraudEvent;
 
-class FraudDetectorFake implements Fake
+class FraudDetectorFake extends FraudDetector implements Fake
 {
     /**
-     * Upload the fraud event to the fraud detector.
+     * Create a new fraud detector instance.
      */
-    public function ingest(mixed $fraudable, FraudableEvent $event): FraudEvent
+    public function __construct()
     {
-        return new FraudEvent;
+        //
     }
 
     public function upload(FraudEvent $fraudEvent): bool
