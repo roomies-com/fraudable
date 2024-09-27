@@ -29,7 +29,7 @@ class FraudDetectorFake implements Fake, FraudDetectionStore
     /**
      * Update the label of the fraud event.
      */
-    public function label(FraudEvent $fraudEvent, Label $label): bool
+    public function update(FraudEvent $fraudEvent, Label $label): bool
     {
         return true;
     }
