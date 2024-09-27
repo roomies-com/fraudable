@@ -12,7 +12,11 @@ class Manager extends BaseManager
      */
     public function getDefaultDriver(): string
     {
-        return $this->config['fraudable.default'];
+        if (is_null($driver = $this->config('fraudable.default'))) {
+            return 'null';
+        }
+
+        return $driver;
     }
 
     /**
