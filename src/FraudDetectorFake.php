@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Roomies\Fraudable;
 
 use Illuminate\Support\Testing\Fakes\Fake;
+use Roomies\Fraudable\Contracts\FraudDetectionStore;
 use Roomies\Fraudable\Models\FraudEvent;
 
-class FraudDetectorFake extends FraudDetector implements Fake
+class FraudDetectorFake implements Fake, FraudDetectionStore
 {
+    /**
+     * Upload the fraud event to the fraud detector.
+     */
     public function upload(FraudEvent $fraudEvent): bool
     {
         return true;
