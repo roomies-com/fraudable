@@ -68,7 +68,7 @@ class FraudEvent extends Model
     {
         Fraud::label($this, $label);
 
-        return $fraudEvent->forceFill([
+        return $this->forceFill([
             'label' => $label->toString(),
         ])->save();
     }
