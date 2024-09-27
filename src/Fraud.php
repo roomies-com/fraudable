@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Roomies\Fraudable;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Testing\Fakes\Fake;
 
@@ -17,7 +16,7 @@ class Fraud extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return FraudDetector::class;
+        return Manager::class;
     }
 
     /**
@@ -27,7 +26,7 @@ class Fraud extends Facade
      */
     public static function fake()
     {
-        return tap(new FraudDetectorFake(app(Request::class)), function ($fake) {
+        return tap(new FraudDetectorFake, function ($fake) {
             static::swap($fake);
         });
     }

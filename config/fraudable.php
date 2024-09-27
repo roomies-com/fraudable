@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Identification Service
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default identification service when using this
+    | feature. You can swap this service on the fly if required.
+    |
+    | Supported services: "aws", "null"
+    |
+    */
+    'default' => env('FRAUDABLE_SERVICE', 'aws'),
+
+    /*
+    |--------------------------------------------------------------------------
     | AWS Fraud Detector Configuration
     |--------------------------------------------------------------------------
     |
@@ -31,20 +44,5 @@ return [
     'legitimate_label' => env('FRAUDABLE_LEGITIMATE_LABEL', 'legitimate'),
 
     'fraudulent_label' => env('FRAUDABLE_FRAUDULENT_LABEL', 'fraudulent'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Detector Aliases
-    |--------------------------------------------------------------------------
-    |
-    | Configure human-readable aliases for detectors to use in place of ...
-    |
-    */
-
-    'detectors' => [
-
-        'default' => env('FRAUDABLE_DETECTOR'),
-
-    ],
 
 ];

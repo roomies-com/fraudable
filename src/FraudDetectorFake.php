@@ -4,20 +4,11 @@ declare(strict_types=1);
 
 namespace Roomies\Fraudable;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Testing\Fakes\Fake;
 use Roomies\Fraudable\Models\FraudEvent;
 
 class FraudDetectorFake extends FraudDetector implements Fake
 {
-    /**
-     * Create a new fraud detector instance.
-     */
-    public function __construct(protected Request $request)
-    {
-        //
-    }
-
     public function upload(FraudEvent $fraudEvent): bool
     {
         return true;
@@ -28,7 +19,7 @@ class FraudDetectorFake extends FraudDetector implements Fake
      */
     public function predict(FraudEvent $fraudEvent, string $detectorId): Prediction
     {
-        return new Prediction;
+        return new Prediction(modelScores: [], ruleResults: []);
     }
 
     /**

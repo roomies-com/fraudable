@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Roomies\Fraudable\Fraud;
-use Roomies\Fraudable\FraudDetector;
 use Roomies\Fraudable\Label;
 use Roomies\Fraudable\Prediction;
 
@@ -43,7 +42,7 @@ class FraudEvent extends Model
      */
     public function upload(): void
     {
-        app(FraudDetector::class)->upload($this);
+        Fraud::upload($this);
     }
 
     /**
@@ -51,7 +50,7 @@ class FraudEvent extends Model
      */
     public function predict(string $detectorId): Prediction
     {
-        return app(FraudDetector::class)->predict($this, $detectorId);
+        return Fraud::predict($this, $detectorId);
     }
 
     /**
@@ -65,9 +64,14 @@ class FraudEvent extends Model
     /**
      * Relabel the event with the given label.
      */
-    public function relabel(Label $label): void
+    public function relabel(Label $label): bool
     {
+
         Fraud::label($this, $label);
+
+        return $fraudEvent->forceFill([
+            'label' => $label->toString(),
+        ])->save();
     }
 
     /**

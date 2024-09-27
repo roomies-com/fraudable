@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Roomies\Fraudable\Concerns;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Roomies\Fraudable\FraudDetector;
 use Roomies\Fraudable\Label;
 use Roomies\Fraudable\Models\FraudEvent;
 
@@ -30,7 +30,12 @@ trait Fraudable
 
     public function ingest(mixed $event): FraudEvent
     {
-        return app(FraudDetector::class)->ingest($this, $event);
+        $pendingEvent = $event->toFraudEvent(app(Request::class));
+
+        return $this->fraudEvents()->create([
+            'name' => $pendingEvent->name,
+            'variables' => $pendingEvent->variables,
+        ]);
     }
 
     public function relabel(Label $label): void
