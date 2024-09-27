@@ -31,7 +31,7 @@ class NullFraudDetector implements FraudDetectionStore
     /**
      * Update the label of the fraud event.
      */
-    public function update(FraudEvent $fraudEvent, Label $label): bool
+    public function label(FraudEvent $fraudEvent, Label $label): bool
     {
         return true;
     }
