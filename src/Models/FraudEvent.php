@@ -66,7 +66,6 @@ class FraudEvent extends Model
      */
     public function relabel(Label $label): bool
     {
-
         Fraud::label($this, $label);
 
         return $fraudEvent->forceFill([

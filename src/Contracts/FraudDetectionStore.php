@@ -21,5 +21,5 @@ interface FraudDetectionStore
     /**
      * Update the label of the fraud event.
      */
-    public function update(FraudEvent $event, Label $label): bool;
+    public function label(FraudEvent $event, Label $label): bool;
 }

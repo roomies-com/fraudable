@@ -55,7 +55,7 @@ class AwsFraudDetector implements FraudDetectionStore
     /**
      * Update the label of the fraud event.
      */
-    public function update(FraudEvent $fraudEvent, Label $label): bool
+    public function label(FraudEvent $fraudEvent, Label $label): bool
     {
         $result = $this->client->updateEventLabel([
             'eventId' => $fraudEvent->id,
