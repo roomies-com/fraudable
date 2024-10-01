@@ -3,7 +3,7 @@
 namespace Roomies\Fraudable\Jobs;
 
 use Roomies\Fraudable\Fraud;
-use Roomies\Fraudable\FraudEvent;
+use Roomies\Fraudable\Models\FraudEvent;
 
 class UploadJob extends Job
 {
