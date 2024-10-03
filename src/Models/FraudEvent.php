@@ -63,6 +63,14 @@ class FraudEvent extends Model
     }
 
     /**
+     * Label the event as legitimate.
+     */
+    public function legitimate(): void
+    {
+        $this->relabel(Label::Legitimate);
+    }
+
+    /**
      * Label the event as fraudulent.
      */
     public function fraudulent(): void
@@ -75,11 +83,7 @@ class FraudEvent extends Model
      */
     public function relabel(Label $label): bool
     {
-        Fraud::label($this, $label);
-
-        return $this->forceFill([
-            'label' => $label->toString(),
-        ])->save();
+        RelabelJob::dispatch($this, $label);
     }
 
     /**
