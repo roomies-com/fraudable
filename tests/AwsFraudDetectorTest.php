@@ -79,11 +79,12 @@ class AwsFraudDetectorTest extends TestCase
         $this->assertInstanceOf(Prediction::class, $prediction);
     }
 
-    public function test_update_event_label()
+    public function test_label_updates_event_label()
     {
         $event = new FraudEvent([
             'id' => 'test-id',
             'name' => 'test-event',
+            'updated_at' => now(),
         ]);
 
         $this->mockClient->shouldReceive('updateEventLabel')
@@ -92,7 +93,7 @@ class AwsFraudDetectorTest extends TestCase
                 '@metadata' => ['statusCode' => 200],
             ]));
 
-        $result = $this->fraudDetector->update($event, Label::Fraudulent);
+        $result = $this->fraudDetector->label($event, Label::Fraudulent);
 
         $this->assertTrue($result);
     }
