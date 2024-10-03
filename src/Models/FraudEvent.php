@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Roomies\Fraudable\Fraud;
+use Roomies\Fraudable\Jobs\RelabelJob;
 use Roomies\Fraudable\Jobs\UploadJob;
 use Roomies\Fraudable\Label;
 use Roomies\Fraudable\Prediction;
