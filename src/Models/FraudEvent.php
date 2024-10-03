@@ -31,14 +31,6 @@ class FraudEvent extends Model
     }
 
     /**
-     * Label the event is legitimate.
-     */
-    public function legitimate(): void
-    {
-        $this->relabel(Label::Legitimate);
-    }
-
-    /**
      * Upload the fraud event to the fraud detector.
      */
     public function upload(): void

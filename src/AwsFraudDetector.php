@@ -60,7 +60,7 @@ class AwsFraudDetector implements FraudDetectionStore
         $result = $this->client->updateEventLabel([
             'eventId' => $fraudEvent->id,
             'eventTypeName' => $fraudEvent->name,
-            'labelTimestamp' => $fraudEvent->updated_at->addSeconds(1)->toISOString(),
+            'labelTimestamp' => $fraudEvent->updated_at->toISOString(),
             'assignedLabel' => $label->toString(),
         ]);
 
