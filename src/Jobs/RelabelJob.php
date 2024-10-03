@@ -2,8 +2,8 @@
 
 namespace Roomies\Fraudable\Jobs;
 
-use Roomies\Fraudable\Enums\Label;
 use Roomies\Fraudable\Fraud;
+use Roomies\Fraudable\Label;
 use Roomies\Fraudable\Models\FraudEvent;
 
 class RelabelJob extends Job
