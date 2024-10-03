@@ -74,7 +74,7 @@ class FraudEvent extends Model
     /**
      * Relabel the event with the given label.
      */
-    public function relabel(Label $label): bool
+    public function relabel(Label $label): void
     {
         RelabelJob::dispatch($this, $label);
     }
