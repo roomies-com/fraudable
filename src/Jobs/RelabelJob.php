@@ -13,7 +13,9 @@ class RelabelJob extends Job
      */
     public function __construct(public FraudEvent $fraudEvent, public Label $label)
     {
-        //
+        if ($queue = config('fraudable.queue')) {
+            $this->onQueue($queue);
+        }
     }
 
     /**

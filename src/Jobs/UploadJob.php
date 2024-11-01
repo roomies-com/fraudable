@@ -12,7 +12,9 @@ class UploadJob extends Job
      */
     public function __construct(public FraudEvent $fraudEvent)
     {
-        //
+        if ($queue = config('fraudable.queue')) {
+            $this->onQueue($queue);
+        }
     }
 
     /**
